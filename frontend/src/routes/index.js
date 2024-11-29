@@ -126,6 +126,21 @@ const adminRoutes = [
     component: TripManagement,
     layout: DefaultLayout,
   },
+  {
+    path: PathRoutesAdmin.STATISTICAL,
+    component: Statistical,
+    layout: DefaultLayout,
+  },
+  {
+    path: PathRoutesAdmin.TICKETS,
+    component: TicketManagement,
+    layout: DefaultLayout,
+  },
+  {
+    path: PathRoutesAdmin.BUS_SCHEDULE,
+    component: BusSchedule,
+    layout: DefaultLayout,
+  },
 ];
 
 const employeeRoutes = [

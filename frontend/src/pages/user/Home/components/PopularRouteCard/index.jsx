@@ -62,9 +62,7 @@ const PopularRouteCard = ({
               <span className="font-medium">{formatVND(trip.price)}</span>
             </div>
             <span className="text-gray-500 text-14 font-openSans">
-              {`${trip.routeLength}  -  ${
-                trip.journeyDuration
-              }  -  ${getCurrentDateFormatted()}`}
+              {`${trip.routeLength + " km "}  -  ${trip.journeyDuration + " Giờ"}  -  ${getCurrentDateFormatted()}`}
             </span>
           </li>
         ))}

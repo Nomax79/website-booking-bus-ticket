@@ -11,9 +11,41 @@ const { Option } = Select;
 const shema = yup.object({
   originId: yup.string().required('Vui lòng chọn điểm đầu'),
   destinationId: yup.string().required('Vui lòng chọn điểm cuối'),
-  journeyDuration: yup.string().required('Vui lòng nhập thời gian.'),
-  routeLength: yup.string().required('Vui lòng nhập độ dài'),
-  price: yup.string().required('Vui lòng nhập giá'),
+  journeyDuration: yup
+  .string()
+  .required('Vui lòng nhập thời gian di chuyển.')
+  .test(
+    'is-positive',
+    'Thời gian phải lớn hơn 0.',
+    (value) => Number(value) > 0,
+  ) // Lớn hơn 0
+  .test(
+    'is-less-than-60',
+    'Thời gian không được lớn hơn 60h.',
+    (value) => Number(value) < 60,
+  ),
+  
+routeLength: yup
+.string()
+.required('Vui lòng nhập độ dài quãng đường')
+.test(
+  'is-positive',
+  'Độ dài phải lớn hơn 0.',
+  (value) => Number(value) > 0,
+) // Lớn hơn 0
+.test(
+  'is-less-than-60',
+  'Độ dài phải nhỏ hơn 2500km.',
+  (value) => Number(value) < 2500,
+),
+price: yup
+.string()
+.required('Vui lòng nhập giá vé')
+.test(
+  'is-positive',
+  'Giá vé phải lớn hơn 100.000VND.',
+  (value) => Number(value) >= 100000,
+),
 });
 
 const FormCURoute = ({ type, route = null, setOpen, handleRoute, loading }) => {
@@ -114,8 +146,9 @@ const FormCURoute = ({ type, route = null, setOpen, handleRoute, loading }) => {
           <InputLabel
             field={field}
             label={'Nhập thời gian:'}
+            type="number"
             suffix="Giờ"
-            placeholder={'Nhập thời gian'}
+            placeholder={'Nhập thời gian di chuyển'}
             errors={errors.journeyDuration}
           />
         )}
@@ -129,7 +162,8 @@ const FormCURoute = ({ type, route = null, setOpen, handleRoute, loading }) => {
           <InputLabel
             field={field}
             label={'Nhập độ dài:'}
-            placeholder={'Nhập độ dài'}
+            type="number"
+            placeholder={'Nhập độ dài quãng đường'}
             errors={errors.routeLength}
           />
         )}
@@ -141,8 +175,9 @@ const FormCURoute = ({ type, route = null, setOpen, handleRoute, loading }) => {
         render={({ field }) => (
           <InputLabel
             field={field}
-            label={'Nhập giá:'}
-            placeholder={'Nhập giá'}
+            label={'Nhập giá vé:'}
+            type="number"
+            placeholder={'Nhập giá vé'}
             errors={errors.price}
           />
         )}

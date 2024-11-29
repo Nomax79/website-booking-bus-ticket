@@ -240,6 +240,7 @@ const Booking = () => {
                     VN Pay
                   </span>
                 </div>
+                
                 <span className="font-medium text-22">
                   {formatVND(Number(trip.totalPrice + roundTrip.totalPrice))}
                 </span>

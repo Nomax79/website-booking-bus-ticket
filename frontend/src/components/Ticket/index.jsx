@@ -57,7 +57,7 @@ const Ticket = ({ ticket }) => {
         <div className="my-4 flex justify-between">
           <span className="text-gray-700 font-medium">Giá vé</span>
           <span className="text-primary-blue-500 font-openSans font-medium">
-            {formatVND(ticket.fare)}
+            {formatVND(ticket.totalPrice)}
           </span>
         </div>
         <div className="my-4 flex justify-between">

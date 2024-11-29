@@ -74,7 +74,7 @@ const Header = () => {
         <div className="ml-4">
           {isLoggedIn() ? (
             
-            isAdmin() || isEmployee() ? (
+            isAdmin(currentUser) || isEmployee() ? (
               <Link to={PathRoutesAdmin.STATISTICAL} className="">
                 <Button className="bg-white w-full px-4 py-1 text-primary-500 font-medium rounded-full border-primary-400 hover:bg-gray-300 transition-all duration-300">
                   Trang quản trị

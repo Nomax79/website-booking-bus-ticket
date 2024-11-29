@@ -9,7 +9,8 @@ import FormEditRoute from '../FormEditRoute';
 import { routeApi } from '@/services/routeApi';
 import { ThreeBodyLoading } from '@/components/Loading';
 import { formatVND } from '@/utils/stringUtils';
-
+import { convertHoursToText } from '@/utils/timeUtils';
+import { convertLengthToKM } from '@/utils/lengthUtils';
 const ListRoute = () => {
   const [listRoute, setListRoute] = useState([]);
   const { contextHolder, openNotification } = ToastMessage();
@@ -91,16 +92,19 @@ const ListRoute = () => {
       },
     },
 
-    {
+    { 
       title: 'Thời gian hành trình',
       dataIndex: 'journeyDuration',
       key: 'journeyDuration',
+      render: (text) => <>{text ? `${convertHoursToText(text)}` : '...'}</>,
     },
     {
       title: 'Độ dài tuyến đường',
       dataIndex: 'routeLength',
       key: 'routeLength',
+      render: (text) => <>{text ? `${convertLengthToKM(text)}` : '...'}</>,
     },
+
     {
       title: 'Giá (VND)',
       dataIndex: 'price',
