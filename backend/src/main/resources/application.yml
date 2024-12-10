@@ -40,6 +40,22 @@ spring:
       max-file-size: 2MB
       max-request-size: 2MB
       resolve-lazily: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 241063492872-4ke49jj9cgt81aod6i2o232k7dn0c1t9.apps.googleusercontent.com
+            client-secret: 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
+            scope: profile, email
+            redirect-uri: "{baseUrl}/login/oauth2/code/google"
+            authorization-grant-type: authorization_code
+            client-name: Google
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
 
 jwt:
   secret: "97c0c3367b199d00cc6234faf02e7747b22dc21115af1f355822d50abf48a1b01807985bcf5b192d5758ba8895e24ff9f69df2bc18a0e497e988838135658630"

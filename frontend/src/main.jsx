@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import { PersistGate } from 'redux-persist/integration/react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import vi_VN from 'antd/locale/vi_VN';
 import 'dayjs/locale/vi.js';
@@ -17,37 +18,39 @@ import ScrollToTop from './components/ScrollToTop/index.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-  <ConfigProvider
-    theme={{
-      token: {
-        colorPrimary: '#00a48f',
-        colorPrimaryBg: '#00a48f',
-        colorPrimaryBgHover: '#00a48f',
-        colorErrorOutline: 'rgba(0, 197, 167, 0.2',
-      },
-      components: {
-        Menu: {
-          darkItemColor: '#fff',
-          darkItemSelectedBg: '#fff',
-          darkItemSelectedColor: '#1c495e',
-          darkSubMenuItemBg: '#00a48f',
-          darkItemHoverColor: '#1c495e',
+  <GoogleOAuthProvider clientId={"241063492872-4ke49jj9cgt81aod6i2o232k7dn0c1t9.apps.googleusercontent.com"}>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#00a48f',
+          colorPrimaryBg: '#00a48f',
+          colorPrimaryBgHover: '#00a48f',
+          colorErrorOutline: 'rgba(0, 197, 167, 0.2',
         },
-        Button: {
-          defaultBg: '#00a48f',
+        components: {
+          Menu: {
+            darkItemColor: '#fff',
+            darkItemSelectedBg: '#fff',
+            darkItemSelectedColor: '#1c495e',
+            darkSubMenuItemBg: '#00a48f',
+            darkItemHoverColor: '#1c495e',
+          },
+          Button: {
+            defaultBg: '#00a48f',
+          },
         },
-      },
-    }}
-    locale={vi_VN}
-  >
-    <Router restoreScroll={true}>
-      <ScrollToTop />
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <App />
-        </PersistGate>
-      </Provider>
-    </Router>
-  </ConfigProvider>,
+      }}
+      locale={vi_VN}
+    >
+      <Router restoreScroll={true}>
+        <ScrollToTop />
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </Provider>
+      </Router>
+    </ConfigProvider>
+  </GoogleOAuthProvider>,
   // </React.StrictMode>,
 );

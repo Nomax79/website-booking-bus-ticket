@@ -8,4 +8,5 @@ public interface AuthService {
   LoginResponse login(LoginRequest loginRequest);
   boolean logout(HttpServletRequest request, HttpServletResponse response);
   LoginResponse refreshToken(RefreshTokenRequest refreshTokenRequest);
+  LoginResponse loginWithOAuth2(String email);
 }

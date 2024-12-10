@@ -15,6 +15,7 @@ public class ApiEndpoint {
   public static final String AUTH_LOGOUT = "/logout";
   public static final String AUTH_REFRESH_TOKEN = "/refresh-token";
   public static final String AUTH_RESET_PASSWORD = "/reset-password";
+  public static final String AUTH_LOGIN_GOOGLE = "/login-google";
 
 
   public static final String ASTERISK_MATCHER = "/**";

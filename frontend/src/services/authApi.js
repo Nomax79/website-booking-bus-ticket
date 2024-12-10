@@ -11,6 +11,16 @@ const authApi = {
     const res = await axiosInstance.post(AUTH_ENDPOINT.LOGIN, credentials);
     return res.data;
   },
+  // Đăng nhập qua Google OAuth
+  loginWithGoogle: async () => {
+    try {
+      const response = await axios.post('/api/auth/login', userData);
+      console.log('Google login successful:', response);
+      return response.data;
+    } catch (error) {
+      console.error('Google login failed', error);
+    }
+  },
   logout: async () => {
     // call API logout trước, vì cần token
     const res = await axiosInstance.post(AUTH_ENDPOINT.LOGOUT);

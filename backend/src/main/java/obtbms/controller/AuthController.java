@@ -8,18 +8,24 @@ import obtbms.common.ResponseObject;
 import obtbms.constant.MessageConstant;
 import obtbms.entity.User;
 import obtbms.entity.dto.LoginRequest;
+import obtbms.entity.dto.LoginResponse;
 import obtbms.entity.dto.RefreshTokenRequest;
 import obtbms.enums.AccountStatus;
 import obtbms.exception.ErrorCode;
 import obtbms.exception.NotFoundException;
 import obtbms.repository.UserRepository;
+import obtbms.security.JwtService;
+import obtbms.security.UserDetailsImpl;
 import obtbms.service.AuthService;
+
+import org.hibernate.mapping.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +42,7 @@ public class AuthController {
 
   private final AuthService authService;
   private final UserRepository userRepository;
-
+  private final JwtService jwtService;
   @PostMapping(AUTH_LOGIN)
   public ResponseEntity<ResponseObject<Object>> login(@RequestBody @Valid LoginRequest loginRequest) {
     try {
@@ -62,5 +68,17 @@ public class AuthController {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseObject.builder().isSuccess(false).message(MessageConstant.REFRESH_TOKEN_FAIL).build());
     }
   }
+  @PostMapping("/api/auth/login")
+  public ResponseEntity<ResponseObject<Object>> loginWithGoogle(OAuth2AuthenticationToken authentication) {
+    String email = authentication.getPrincipal().getName(); // Extract email from OAuth2 token
+    LoginResponse loginResponse = authService.loginWithOAuth2(email);
 
+    return ResponseEntity.ok().body(
+        ResponseObject.builder()
+            .isSuccess(true)
+            .message(MessageConstant.LOGIN_SUCCESS)
+            .data(loginResponse)
+            .build()
+    );
+  }
 }
