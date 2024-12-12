@@ -64,7 +64,7 @@ const Footer = () => {
       </div>
       {/** Copy Right */}
       <div className="px-16 bg-primary-800 flex justify-center py-2 text-white">
-        <span className="">© 2023</span>
+        <span className="">© 2024</span>
         <span className="border-r-2 mx-2"></span>
         <div className="flex">
           <span>Bản quyền thuộc về Online Bus Tickets Reservation</span>

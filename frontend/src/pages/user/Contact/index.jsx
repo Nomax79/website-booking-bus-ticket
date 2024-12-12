@@ -9,7 +9,7 @@ import TextArea from 'antd/es/input/TextArea';
 import { useState } from 'react';
 import ToastMessage from '@/components/Toast';
 import axios from 'axios';
-
+import mapImage from '@/assets/map.png';
 const shema = yup.object({
   fullName: yup.string().required('Vui lòng nhập họ tên.'),
   email: yup
@@ -93,6 +93,7 @@ const Contact = () => {
               </span>
             </div>
           ))}
+          <img src={mapImage} alt="Map" />
         </div>
       </div>
       <div className="col-span-2">

@@ -92,6 +92,7 @@ export const defaultInformation = [
     children: '8080 3030',
     link: 'tel:+80803030',
   },
+  
 ];
 
 export const PolicycAncelTicket = {
