@@ -1,4 +1,4 @@
-## Nien Luan Co So Nganh He Thong Thong Tin - CT252
+## Lập trình J2EE
 
 ### Đề Tài: Hệ thống quản lý đặt vé xe khách trực tuyến
 
